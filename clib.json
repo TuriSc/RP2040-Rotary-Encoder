@@ -1,6 +1,6 @@
 {
   "name": "pico-rotary-encoder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repo": "jkroso/pico-rotary-encoder.c",
   "description": "A rotary encoder for the Raspberry Pico",
   "keywords": [
@@ -12,9 +12,9 @@
   "license": "MIT",
   "src": ["encoder.c"],
   "dependencies": {
-    "jkroso/pico-gpio-interrupt.c": "0.1.1"
+    "jkroso/pico-gpio-interrupt.c": "0.1.2"
   },
   "development": {
-    "jkroso/pico-button.c": "0.1.1"
+    "jkroso/pico-button.c": "*"
   }
 }
