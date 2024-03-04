@@ -1,18 +1,8 @@
-#ifndef PICO_ROTARY_ENCODER_C
-#define PICO_ROTARY_ENCODER_C
-
-#include "pico-gpio-interrupt/gpio-interrupt.c"
-#include "hardware/gpio.h"
 #include "pico/stdlib.h"
+#include <encoder.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-typedef struct rotary_encoder_t {
-  int pin_a, pin_b;
-  int state;
-  long int position;
-  void (*onchange)(struct rotary_encoder_t *button);
-} rotary_encoder_t;
+#include "hardware/gpio.h"
 
 void handle_rotation(void *pointer) {
   rotary_encoder_t *encoder = (rotary_encoder_t *)pointer;
@@ -41,5 +31,3 @@ rotary_encoder_t *create_encoder(int pin_a, int pin_b, void (*onchange)(rotary_e
   listen(pin_b, GPIO_IRQ_EDGE_RISE|GPIO_IRQ_EDGE_FALL, handle_rotation, encoder);
   return encoder;
 }
-
-#endif
