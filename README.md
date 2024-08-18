@@ -23,4 +23,5 @@ This library is a fork of [jkroso/pico-rotary-encoder.c](https://github.com/jkro
 
 
 ### Version history
+- 2024-08-18 - Bug fix
 - 2024-03-04 - First release

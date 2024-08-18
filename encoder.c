@@ -21,6 +21,10 @@ void handle_rotation(void *pointer) {
 }
 
 rotary_encoder_t *create_encoder(int pin_a, int pin_b, void (*onchange)(rotary_encoder_t *encoder)) {
+  gpio_init(pin_a);
+  gpio_init(pin_b);
+  gpio_pull_up(pin_a);
+  gpio_pull_up(pin_b);
   rotary_encoder_t *encoder = (rotary_encoder_t *)malloc(sizeof(rotary_encoder_t));
   encoder->pin_a = pin_a;
   encoder->pin_b = pin_b;
