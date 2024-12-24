@@ -1,9 +1,13 @@
 #include "pico/stdlib.h"
-#include <encoder.h>
+#include "encoder.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "hardware/gpio.h"
 
+/**
+ * @brief Handles a rotary encoder interrupt
+ * @param pointer The rotary encoder structure
+ */
 void handle_rotation(void *pointer) {
   rotary_encoder_t *encoder = (rotary_encoder_t *)pointer;
   int state = gpio_get(encoder->pin_a)<<1 | gpio_get(encoder->pin_b);
@@ -20,6 +24,13 @@ void handle_rotation(void *pointer) {
   encoder->state = state;
 }
 
+/**
+ * @brief Creates a new rotary encoder structure
+ * @param pin_a The GPIO pin number of the encoder's A channel
+ * @param pin_b The GPIO pin number of the encoder's B channel
+ * @param onchange The onchange callback function
+ * @return The new rotary encoder structure
+ */
 rotary_encoder_t *create_encoder(int pin_a, int pin_b, void (*onchange)(rotary_encoder_t *encoder)) {
   gpio_init(pin_a);
   gpio_init(pin_b);
@@ -35,3 +46,4 @@ rotary_encoder_t *create_encoder(int pin_a, int pin_b, void (*onchange)(rotary_e
   listen(pin_b, GPIO_IRQ_EDGE_RISE|GPIO_IRQ_EDGE_FALL, handle_rotation, encoder);
   return encoder;
 }
+

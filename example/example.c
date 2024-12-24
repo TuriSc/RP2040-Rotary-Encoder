@@ -8,13 +8,19 @@
 #define ENCODER_CLK_PIN  1 // Clock
 #define ENCODER_SW_PIN   2 // Switch
 
-// Function to call on a change event
+/**
+ * @brief Function to call on a rotary encoder change event
+ * @param encoder The rotary encoder structure
+ */
 void onchange(rotary_encoder_t *encoder) {
   printf("Position: %d\n", encoder->position);
   printf("State: %d%d\n", encoder->state & 0b10 ? 1 : 0, encoder->state & 0b01);
 }
 
-// Function to call on a press event
+/**
+ * @brief Function to call on a button press event
+ * @param button The button structure
+ */
 void onpress(button_t *button) {
   printf("Button pressed: %s\n", button->state ? "Released" : "Pressed");
 }
