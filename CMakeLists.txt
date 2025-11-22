@@ -14,4 +14,7 @@ if (NOT TARGET ${TARGET_NAME})
     target_link_libraries(${TARGET_NAME} INTERFACE
         pico_stdlib
     )
+    
+    # Note: Projects using this library must also link the button library
+    # The encoder library depends on button.h for the listen() function
 endif()
